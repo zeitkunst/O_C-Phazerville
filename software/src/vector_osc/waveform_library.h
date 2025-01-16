@@ -1,7 +1,7 @@
 namespace HS {
 
 #define VO_TOC 255
-const byte WAVEFORM_LIBRARY_COUNT = 32;
+const byte WAVEFORM_LIBRARY_COUNT = 33;
 
 // Waveform Library Names
 enum {
@@ -37,6 +37,7 @@ enum {
     Morph5,
     Morph6,
     Morph7,
+    Quant = 70,
 };
 
 VOSegment library_waveforms[] = {
@@ -314,6 +315,18 @@ VOSegment library_waveforms[] = {
 	VOSegment {255, 1},
 	VOSegment {180, 2},
 	VOSegment {148, 5},
+
+    VOSegment {10, VO_TOC},
+    VOSegment {128, 1},
+    VOSegment {243, 1},
+    VOSegment {234, 1},
+    VOSegment {248, 1},
+    VOSegment {186, 1},
+    VOSegment {228, 1},
+    VOSegment {254, 1},
+    VOSegment {239, 1},
+    VOSegment {255, 1},
+    VOSegment {247, 1},
 };
 
 }; // namespace HS
