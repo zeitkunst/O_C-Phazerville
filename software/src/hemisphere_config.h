@@ -57,9 +57,10 @@
 #include "applets/MultiScale.h"
 #include "applets/Palimpsest.h"
 #include "applets/Pigeons.h"
-#include "applets/PolyDiv.h"
+//#include "applets/PolyDiv.h"
 #include "applets/ProbabilityDivider.h"
 #include "applets/ProbabilityMelody.h"
+#include "applets/QuantalNoise.h"
 #include "applets/ResetClock.h"
 #include "applets/RndWalk.h"
 #include "applets/RunglBook.h"
@@ -165,9 +166,10 @@ AppletRegistry reg{
     DeclareApplet<MultiScale>{73, 0x08},
     DeclareApplet<Palimpsest>{20, 0x02},
     DeclareApplet<Pigeons>{71, 0x02},
-    DeclareApplet<PolyDiv>{72, 0x06},
+    //DeclareApplet<PolyDiv>{72, 0x06},
     DeclareApplet<ProbabilityDivider>{59, 0x04},
     DeclareApplet<ProbabilityMelody>{62, 0x04},
+    DeclareApplet<QuantalNoise>{97, 0x01},
     DeclareApplet<ResetClock>{70, 0x14},
     DeclareApplet<RndWalk>{69, 0x01},
     DeclareApplet<RunglBook>{44, 0x01},
