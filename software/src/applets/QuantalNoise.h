@@ -36,8 +36,8 @@ public:
     void Controller() {
         ForEachChannel(ch) {
             if (Clock(ch)) {
-                cv[counter] = round(values[counter] * 5 * (12 << 7));
-                Out(ch, cv[counter]);
+                cv[ch] = round(values[counter] * 5 * (12 << 7));
+                Out(ch, cv[ch]);
 
                 counter += 1;
                 if (counter >= numValues) counter = 0;
@@ -82,6 +82,7 @@ protected:
 
 private:
     float values[10] = {0.0, 0.9, 0.83, 0.94, 0.45, 0.78, 0.99, 0.87, 1.0, 0.93};
+    //{128, 243, 234, 248, 186, 228, 254, 239, 255, 247}
     uint8_t numValues = 10;
     int cv[2];
     uint8_t counter = 0;
