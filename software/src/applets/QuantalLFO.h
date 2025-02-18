@@ -21,19 +21,17 @@
 #include "../vector_osc/HSVectorOscillator.h"
 #include "../vector_osc/WaveformManager.h"
 
-// commenting this out since it's already defined in QuantLFO
-// uncomment if we don't use QuantLFO 
-//static constexpr int pow10_lut[] = { 1, 10, 100, 1000 };
+static constexpr int pow10_lut[] = { 1, 10, 100, 1000 };
 
-class VectorLFO : public HemisphereApplet {
+class QuantLFO : public HemisphereApplet {
 public:
 
     const char* applet_name() {
-        return "VectorLFO";
+        return "QuantalLFO";
     }
     const uint8_t* applet_icon() { return PhzIcons::vectorLFO; }
 
-    static constexpr int min_freq = 8;
+    static constexpr int min_freq = 1;
     static constexpr int max_freq = 100000;
 
     void Start() {
@@ -44,6 +42,8 @@ public:
             SwitchWaveform(ch, 0);
             Out(ch, 0);
         }
+        waveform_total = WaveformManager::WaveformCount();
+        waveform_index = 0;
     }
 
     void Controller() {
@@ -58,7 +58,18 @@ public:
 
         int signal = 0; // Declared here because the first channel's output is used in the second channel; see below
         ForEachChannel(ch)
-        {
+        { 
+            if (Clock(ch)) {
+                waveform_number[ch] = WaveformManager::GetNextWaveform(waveform_number[ch], 1);
+                /*
+                if (waveform_number[ch] > WaveformManager::WaveformCount()) {
+                    waveform_number[ch] = 32;
+                }
+                    */
+                SwitchWaveform(ch, waveform_number[ch]);
+                osc[ch].Reset();
+            }
+
             if (Clock(ch)) {
                 uint32_t ticks = ClockCycleTicks(ch);
                 int new_freq = 1666666 / ticks;
@@ -173,6 +184,8 @@ private:
     // Settings
     int waveform_number[2];
     int freq[2]; // in centihertz
+    byte waveform_total = 0;
+    byte waveform_index = 0;
     
     void DrawInterface() {
         byte c = cursor;
@@ -191,8 +204,10 @@ private:
           if (h < 10) gfxPrint("0");
           gfxPrint(h);  
         }
-        
+
         gfxPrint(" Hz");
+
+        gfxPrint(1, 30, waveform_number[0]);
         DrawWaveform(ch);
 
         if (c == 0) gfxCursor(8, 23, 55);

@@ -13,6 +13,7 @@
 // * Category filtering is deprecated at 1.8, but I'm leaving the per-applet categorization
 // alone to avoid breaking forked codebases by other developers.
 
+/*
 #include "applets/ADSREG.h"
 #include "applets/ADEG.h"
 #include "applets/ASR.h"
@@ -30,11 +31,13 @@
 #include "applets/Carpeggio.h"
 #include "applets/Chordinator.h"
 #include "applets/ClockDivider.h"
+*/
 #ifdef ARDUINO_TEENSY41
 #include "applets/ClockSetupT4.h"
 #else
 #include "applets/ClockSetup.h"
 #endif
+/*
 #include "applets/ClockSkip.h"
 #include "applets/Compare.h"
 #include "applets/DivSeq.h"
@@ -60,7 +63,9 @@
 //#include "applets/PolyDiv.h"
 #include "applets/ProbabilityDivider.h"
 #include "applets/ProbabilityMelody.h"
-#include "applets/QuantalNoise.h"
+*/
+#include "applets/QuantalLFO.h"
+/*
 #include "applets/ResetClock.h"
 #include "applets/RndWalk.h"
 #include "applets/RunglBook.h"
@@ -90,7 +95,10 @@
 #include "applets/VectorLFO.h"
 #include "applets/VectorMod.h"
 #include "applets/VectorMorph.h"
+*/
+/*
 #include "applets/Voltage.h"
+*/
 #include "applets/hMIDIIn.h"
 #include "applets/hMIDIOut.h"
 
@@ -126,6 +134,7 @@ private:
 };
 
 AppletRegistry reg{
+/*
     DeclareApplet<ADSREG>{8, 0x01},
     DeclareApplet<ADEG>{34, 0x01},
     DeclareApplet<ASR>{47, 0x09},
@@ -169,7 +178,9 @@ AppletRegistry reg{
     //DeclareApplet<PolyDiv>{72, 0x06},
     DeclareApplet<ProbabilityDivider>{59, 0x04},
     DeclareApplet<ProbabilityMelody>{62, 0x04},
-    DeclareApplet<QuantalNoise>{97, 0x01},
+    */
+    DeclareApplet<QuantLFO>{97, 0x01},
+    /*
     DeclareApplet<ResetClock>{70, 0x14},
     DeclareApplet<RndWalk>{69, 0x01},
     DeclareApplet<RunglBook>{44, 0x01},
@@ -200,6 +211,7 @@ AppletRegistry reg{
     DeclareApplet<VectorMod>{53, 0x01},
     DeclareApplet<VectorMorph>{54, 0x01},
     DeclareApplet<Voltage>{43, 0x10},
+    */
 };
 
 
